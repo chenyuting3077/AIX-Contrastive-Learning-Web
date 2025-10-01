@@ -1,0 +1,1 @@
+const supervised_simclr_1000_acc = {"plane": 0.965, "car": 0.983, "bird": 0.953, "cat": 0.893, "deer": 0.954, "dog": 0.917, "frog": 0.971, "horse": 0.963, "ship": 0.98, "truck": 0.951, "avg": 0.953}

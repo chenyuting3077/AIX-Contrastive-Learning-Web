@@ -1,0 +1,1 @@
+const batch_size_acc_256 = {"plane": "0.930", "avg": 0.894, "frog": 0.935, "truck": 0.949, "dog": "0.740", "car": 0.964, "horse": 0.903, "bird": 0.875, "ship": 0.958, "deer": 0.908, "cat": 0.786}

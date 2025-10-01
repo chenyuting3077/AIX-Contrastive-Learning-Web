@@ -1,0 +1,1 @@
+const epochs_600_acc = {"plane": 0.923, "car": "0.970", "bird": 0.848, "cat": 0.763, "deer": 0.872, "dog": 0.754, "frog": 0.937, "horse": 0.907, "ship": 0.957, "truck": 0.937, "avg": 0.887}

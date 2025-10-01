@@ -1,0 +1,1 @@
+const temperature_acc_1 = {"horse": 0.892, "avg": 0.885, "plane": "0.930", "frog": 0.914, "truck": 0.946, "dog": 0.723, "car": 0.968, "bird": "0.850", "ship": 0.955, "deer": 0.903, "cat": 0.777}

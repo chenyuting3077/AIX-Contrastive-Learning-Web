@@ -1,0 +1,1467 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <!-- Required meta tags for IEEE Xplore immersive article -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="An interactive article to introduce contrastive learning.">
+  <meta charset="utf8">
+  <title> Contrastive learning
+  </title>
+
+  <!-- Stylesheet for IEEE Xplore immersive article -->
+  <link rel="stylesheet" href="fonts/stylesheet.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/augmented-image.css">
+  <!-- MathJax javascript library and implementation file/s -->
+  <script src="jquery-3.5.1.js"></script>
+  <script type="text/javascript" async
+    src="https://xploreqa.ieee.org/xploreAssets/MathJax-274/MathJax.js?config=default">
+  </script>
+  <script src = "js/augmentation.js"></script>
+  <script src ="chartjs/dist/chart.umd.js"></script>
+
+  <!-- Load data -->
+  <script type="text/javascript" src ="./ablation/batch_size/batch_size_128.json"></script>
+  <script type="text/javascript" src ="./ablation/batch_size/batch_size_256.json"></script>
+  <script type="text/javascript" src ="./ablation/batch_size/batch_size_512.json"></script>
+  <script type="text/javascript" src ="./ablation/batch_size/batch_size_acc_128.json"></script>
+  <script type="text/javascript" src ="./ablation/batch_size/batch_size_acc_256.json"></script>
+  <script type="text/javascript" src ="./ablation/batch_size/batch_size_acc_512.json"></script>
+
+  <script type="text/javascript" src ="./ablation/temperature_tSNE_0_1.json"></script>
+  <script type="text/javascript" src ="./ablation/temperature_tSNE_0_5.json"></script>
+  <script type="text/javascript" src ="./ablation/temperature_tSNE_1.json"></script>
+  
+  <script type="text/javascript" src ="./ablation/temperature_acc_0_1.json"></script>
+  <script type="text/javascript" src ="./ablation/temperature_acc_0_5.json"></script>
+  <script type="text/javascript" src ="./ablation/temperature_acc_1.json"></script>
+
+  <script type="text/javascript" src ="./ablation/epochs/epochs_100.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_1000.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_1000_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_100_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_200.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_200_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_300.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_300_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_400.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_400_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_500.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_500_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_600.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_600_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_700.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_700_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_800.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_800_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_900.json"></script>
+  <script type="text/javascript" src ="./ablation/epochs/epochs_900_acc.json"></script>
+
+
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_100.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_100_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_200.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_200_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_300.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_300_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_400.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_400_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_500.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_500_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_600.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_600_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_700.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_700_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_800.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_800_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_900.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_900_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_1000.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/supervised_simclr_1000_acc.json"></script>
+  
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_100.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_100_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_200.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_200_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_300.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_300_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_400.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_400_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_500.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_500_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_600.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_600_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_700.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_700_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_800.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_800_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_900.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_900_acc.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_1000.json"></script>
+  <script type="text/javascript" src ="./ablation/supervised/unsupervised_simclr_1000_acc.json"></script>
+
+  <script type="text/javascript" src ="./ablation/cosine_degree_file"></script>
+  
+
+</head>
+
+<body>
+  <!-- Article with large top spacing -->
+  <article class="mt-lg">
+    <header>
+      <!-- Page container -->
+      <div class="container">
+        <!-- Page title -->
+        <h1>
+          Interactive Augmentations, Features and Parameters for Contrastive Learning
+        </h1>
+        <!-- Subheading -->
+        <p class="subhead">
+            An interactive article to introduce contrastive learning.
+            The readers can learn the fundamentals of the contrastive learning network from the interactive 
+            figures of dominant components and parameters.
+        </p>
+        <!-- Header info general wrapper -->
+        <div class="header-info">
+          <!-- Header left info box -->
+          <div class="header-left box">
+            <!-- Header authors section -->
+            <div class="header-authors">
+              <h2>Authors</h2>
+              <ul>
+                <li>Yu-Ting Chen | National Chung Hsing University, Taichung</li>
+                <li>Chien-Yu Chiou | National Cheng Kung University, Tainan</li>
+                <li>Chun-Rong Huang | National Cheng Kung University, Tainan</li>
+              </ul>
+            </div>
+            <!-- Published info section -->
+            <div class="header-published">
+              <h2>Published</h2>
+              <p>Mar. 29, 2023</p>
+            </div>
+          </div>
+          <!-- Header legend section -->
+          <div class="header-legend">
+            <svg class="click-icon" data-name="Click"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.62 122.88">
+              <title>Click</title>
+              <path
+                d="M40.59,14.63a3.36,3.36,0,0,1-1,2.39l0,0a3.39,3.39,0,0,1-4.77,0,3.42,3.42,0,0,1-1-2.4V3.39A3.4,3.4,0,0,1,37.2,0a3.34,3.34,0,0,1,2.39,1,3.39,3.39,0,0,1,1,2.4V14.63Zm25,76.65a1.89,1.89,0,0,1,3.77,0V99.9a1.89,1.89,0,1,1-3.77,0V91.28ZM54.46,87.47a1.89,1.89,0,0,1,3.77,0V99.9a1.89,1.89,0,1,1-3.77,0V87.47Zm-28-7.63a1.92,1.92,0,0,1-.35-.23q-5.24-4.24-10.44-8.53a8.36,8.36,0,0,0-3.57-1.79,3.54,3.54,0,0,0-2,.09A2,2,0,0,0,9,70.49a6.9,6.9,0,0,0-.4,3.24,12.47,12.47,0,0,0,1.11,4,26.49,26.49,0,0,0,2.92,4.94l17.68,26.74a2.37,2.37,0,0,1,.36,1,15.28,15.28,0,0,0,1.87,6.4,2.89,2.89,0,0,0,2.57,1.46c9,0,18.62-.34,27.53,0a8.33,8.33,0,0,0,4.69-1.51,15,15,0,0,0,4.29-5l.34-.57c3.4-5.87,6.71-11.57,7-18.33L78.85,85l0-.33,0-1.84c.06-5.74.16-14.54-4.62-15.4H71.14c.09,2.46,0,5-.18,7.3-.08,1.36-.15,2.63-.15,3.79a2.31,2.31,0,1,1-4.62,0c0-1.1.08-2.52.17-4,.32-5.73.75-13.38-3.24-14.14h-3a2.2,2.2,0,0,1-.58-.07,69.07,69.07,0,0,1-.13,8.29c-.07,1.36-.15,2.63-.15,3.79a2.31,2.31,0,1,1-4.61,0c0-1.1.08-2.52.16-4,.33-5.73.76-13.38-3.24-14.14h-3a2,2,0,0,1-.6-.08V66a2.31,2.31,0,1,1-4.61,0V42c0-4-1.64-6.55-3.73-7.61a5.32,5.32,0,0,0-4.71-.06l-.1.06c-2.07,1-3.69,3.59-3.69,7.7v42a2.31,2.31,0,1,1-4.62,0V79.84Zm44.14-17a2.49,2.49,0,0,1,.61-.08h3.19a2.33,2.33,0,0,1,.53.06c8.73,1.4,8.61,12.65,8.52,20,0,3.4.14,6.78.18,10.17-.39,7.91-4,14.1-7.67,20.47l-.32.55A19.49,19.49,0,0,1,70,120.55a12.88,12.88,0,0,1-7.29,2.32H35.17a7.23,7.23,0,0,1-6.44-3.5,19,19,0,0,1-2.56-7.88L8.94,85.42A31,31,0,0,1,5.5,79.58,16.88,16.88,0,0,1,4,74a11.42,11.42,0,0,1,.8-5.42,6.54,6.54,0,0,1,3.55-3.49A8.05,8.05,0,0,1,13,64.76a13.19,13.19,0,0,1,5.61,2.77L26.45,74V42.09c0-6.1,2.73-10,6.22-11.82l.15-.06a9.81,9.81,0,0,1,4.33-1,10,10,0,0,1,4.49,1.07C45.16,32.06,47.91,36,47.91,42v7.6a2.41,2.41,0,0,1,.6-.08H51.7a2.33,2.33,0,0,1,.53.06c3.82.61,5.73,3.16,6.63,6.47a2.25,2.25,0,0,1,1.23-.36h3.18a2.26,2.26,0,0,1,.53.06c4.07.65,6,3.49,6.79,7.11ZM14.63,37A3.33,3.33,0,0,1,17,38a3.39,3.39,0,0,1-2.39,5.79H3.39a3.36,3.36,0,0,1-2.39-1A3.4,3.4,0,0,1,3.39,37ZM23,20.55a3.39,3.39,0,0,1-2.4,5.79,3.4,3.4,0,0,1-2.4-1l-7.91-7.94a3.42,3.42,0,0,1-1-2.4,3.39,3.39,0,0,1,5.79-2.4L23,20.55ZM59.2,43.81a3.41,3.41,0,0,1-3.4-3.4A3.41,3.41,0,0,1,59.2,37H70.43a3.35,3.35,0,0,1,2.4,1,3.4,3.4,0,0,1-2.4,5.79ZM55.62,24.74a3.39,3.39,0,0,1-4.8-4.8l7.91-8a3.39,3.39,0,0,1,4.8,4.8l-7.91,8Z" />
+            </svg>
+            <p>Indicates interactive elements</p>
+          </div>
+        </div>
+        <!-- Box of anchored links -->
+        <div class="contents box">
+          <h2>Contents:</h2>
+          <ul>
+            <li>
+              <a href="#Introduction">Introduction</a>
+              <span class="separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            </li>
+            <li>
+              <a href="#Contrastive_learning">Contrastive Learning</a>
+              <span class="separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            </li>
+            <li>
+              <a href="#SimCLR">A Simple Framework for Contrastive Learning</a>
+              <span class="separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            </li>
+            <li>
+              <a href="#Training_Better_Features">Training Better Features by Parameter Adjustment</a>
+              <span class="separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            </li>
+            <li>
+              <a href="#Supervised_Contrastive_Learning">Supervised Contrastive Learning</a>
+              <span class="separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            </li>
+            <li>
+              <a href="#Conclusion">Conclusion</a>
+              <span class="separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- Content container with large top spacing -->
+    <div class="container mt-lg">
+        <!-- Anchor ID -->
+        <section id="abstract">
+        </section>
+        <!-- ===================================== introduction ==============================      -->
+        <section id="Introduction">
+            <!-- Section title -->
+            <h2>I. Introduction</h2>
+            <p>
+                Supervised deep neural networks have been shown their effectiveness in various domains [<a href="#ref_1:AlexNet">1</a>], [<a href="#ref_2:ResNet">2</a>], [<a href="#ref_3:DeepEnsemble">3</a>], [<a href="#ref_4:SCIST">4</a>].
+                These networks learn semantic features from large-scale datasets with manual labels in an end-to-end manner.
+                By using learned semantic features, these networks can then be used to predict the labels of testing images.
+            </p>
+            <p>
+                Training a good supervised deep neural network requires to collect a large number of training images
+                and manually annotate the labels of the training images.
+                This process can be extremely time-consuming and labor-intensive.
+                For example, the ImageNet dataset [<a href="#ref_5:ImageNet">5</a>] contains $1.28$ million training images,
+                $50,000$ validation images, and $100,000$ testing images.
+                All of the images are manually annotated to one of $1,000$ different classes.
+                Moreover, annotating training images can be challenging for some tasks such as medical image segmentation [<a href="#ref_6:Medical transformer">6</a>], [<a href="#ref_7:Criss-Cross Attention Based Multi-level Fusion Network">7</a>].
+                In medical image segmentation, only doctors are qualified to provide pixel-wise annotations of the lesions.
+                Labeling pixel-wise annotations is not only the burdens of doctors but also a time-consuming process.
+                It is usually hard to obtain sufficient annotations due to the limited time of the doctors.
+                Thus, learning effective visual features without expensive labeling cost is a long-standing problem [<a href="#ref_8:SimCLR">8</a>].
+                Given the problem associated with the supervised learning, a key question arises:
+            </p>
+            <p style="text-align: center; font-size:20px;">
+                <b>Could we reduce the reliance on labels?</b>
+            </p>
+            <p>
+                To address this issue, contrastive learning is proposed which can learn robust feature representations
+                from various image augmentations without labels.
+                The state-of-the-art results [<a href="#ref_8:SimCLR">8</a>], [<a href="#ref_9:MoCo">9</a>], [<a href="#ref_10:CL_SG">10</a>] show that
+                contrastive learning reduces the reliance on labeled data and achieves close performance compared with
+                supervised methods.
+                Moreover, many top research teams including Google [<a href="#ref_8:SimCLR">8</a>] and Facebook [<a href="#ref_9:MoCo">9</a>]
+                have also explored contrastive learning and achieved significant results, which demonstrate the potential of using contrastive
+                learning to learn better features from unlabeled datasets for computer vision tasks [<a href="#ref_11:Csi">11</a>], [<a href="#ref_12:Unsupervised representation learning for tissue segmentation in histopathological images">12</a>].
+                Because the effectiveness of contrastive learning, this paper aims to introduce key components of
+                contrastive learning via AI-explained interactive figures.
+            </p>
+            <p>
+                In this paper, the key schemes of contrastive learning are described in Sec. II.
+                Sec. III introduces a simple framework for contrastive learning.
+                Training better features by parameter adjustment is shown in Sec. IV.
+                Supervised contrastive learning is described in Sec. V.
+                Finally, Sec. VI gives the conclusion.
+            </p>
+        </section>
+        <!-- ===================================== Contrastive learning ==============================--
+      Given training images without labels, a contrastive learning network aims to learn representative features
+        of training images. -->
+    <section id="Contrastive_learning">
+    <h2>II. CONTRASTIVE LEARNING</h2>
+    <p>
+
+        Figure 1 shows the concept of contrastive learning. 
+        The idea of contrastive learning is to pull an image and a positive training image together, and to
+        push the image away from negative training images in the feature space.
+        Assume that the dataset contains objects of two classes, cats and dogs.
+        In this case, we define the images of the same class as "similar" (represented by the black arrows), while the images of different classes are defined as "dissimilar" (represented by the red arrows).
+        This means that a learned feature of an image of a cat should be similar to those of images of remaining cats in the dataset.
+        In contrast, the learned features of the images of the dogs should be dissimilar to those of images of cats.
+        Two similar images are defined as positive pairs, while two dissimilar images are considered as negative pairs.
+        Contrastive learning aims to learn similar features for positive pairs and learn distinctive features to distinguish negative pairs with respect to different classes.
+    </p>
+        <figure class="static">
+          <img src="img/contrastive_learning/contrastive_learning_concept.png" alt="contrastive_learning_concept" style="margin: auto auto; width: 500px; display: block"/>
+          <figcaption><strong>Figure 1:</strong> The concept of contrastive learning.</figcaption>
+        </figure>
+      <p>
+          However, when the labels of the training images are not available, how to define positive pairs and negative pairs for training?
+          To address this issue, a <b>Simple Framework for Contrastive Learning </b>(SimCLR) [<a href="#ref_8:SimCLR">8</a>]
+          is proposed to discover the content correlations of unlabeled training images by using data augmentations.
+          A positive pair is generated by two data augmentations of the same training image, while a negative pair is generated by
+          the data augmentation of the training image and the augmentations of the remaining training images.
+          Based on the positive pairs and negative pairs of the augmentations of the training images,
+          the self-supervised contrastive loss is proposed to learn similar features for positive pairs and dissimilar features for negative pairs.
+          SimCLR not only achieves state-of-the-art results but also is easy to implement.
+          In the following, we will describe important schemes of SimCLR via interactive figures.
+        </p>
+    </section>
+    <!-- ===================================== A SIMPLE FRAMEWORK FOR CONTRASTIVE LEARNING  ==============================-->
+    <section id="SimCLR">
+        <h2>III. A SIMPLE FRAMEWORK FOR CONTRASTIVE LEARNING</h2>
+        <p>
+            Figure 2 shows the network structure of SimCLR [<a href="#ref_8:SimCLR">8</a>].
+            Given an image in the dataset, two random augmentations are generated.
+            The augmentations are passed to the shared-weights learnable encoder network and projection network for feature representations.
+            Based on the feature representations generated by the projection network, the contrastive loss improves
+            the quality of the learned feature representations by learning similar features for augmentations of the same training image and distinctive features for augmentations of different training images.
+        </p>
+        <p>
+            In Figure 2, the readers can click the training images to select interested images for training by using the contrastive learning network.
+            Then, click the check boxes in the right side of the training images to select desired augmentation types for the selected images.
+            When multiple augmentation types are checked, the interactive figure will show the random augmentations of the training images by combining multiple augmentation types.
+            To understand the concept of positive pairs and negative pairs, select two generated augmentations (images) and the interactive figure will show the readers which kind of pair is selected.
+            The selected augmentations will pass to the shared-weights encoder network and projection network to generate projection features.
+            When an input pair is a positive pair, the contrastive loss aims to pull the projection features of the images of the positive pair together in the feature space.
+            In contrast, when an input pair is a negative pair, the contrastive loss will push the projection features of the images of the negative pair away in the feature space.
+            In this way, the contrastive learning network can learn features to distinguish images of different classes.
+            In the following, we will introduce the key components of contrastive learning in details.
+        </p>
+        <div class="framed">
+            <div class="inside">
+                <div class="eyebrow">
+                    Click the training images in the left-bottom corner of the figure to select training images for training the contrastive learning network.
+                    Click the check boxes to select different augmentation types.
+                    When multiple augmentation types are checked, random augmentations of the training images are automatically generated by combining multiple augmentation types.
+                    Select two augmentations as the inputs of the contrastive learning network.
+                    After passing to the shared-weights encoder network and the projection network, projection features are obtained.
+                    If the augmentations are from the same image, i.e. a positive pair, their projection features will be pulled together based on the contrastive loss.
+                    In contrast, if the augmentations are from different images, i.e. a negative pair, their projection features will be pushed away based on the contrastive loss.
+                </div>
+                <div class="horizontal" id="concept">
+                    <!-- dataset   images -->
+                    <div class="vertical">
+                        <div class="contrastive-container vertical">
+                            <img id="concept_batch_image_0" src="img/contrastive_learning/concept/cat_one.jpg" class="concept-dataset-images contrastive-container">
+                            <img id="concept_batch_image_1" src="img/contrastive_learning/concept/plane_one.jpg" class="concept-dataset-images contrastive-container">
+                        </div>
+                    </div>
+
+                    <!--      augmentation  -->
+                    <div class="vertical">
+                        <div>
+                            <img src="img/contrastive_learning/arrow.png" class="concept-arrow">
+                        </div>
+
+                    </div>
+                    <!--      augmented images                -->
+                    <!-- <div class= "vertical"> -->
+                    <div class="contrastive-container" id="concept-augmented-images-container">
+                        <img id="concept_augmented_image_0_0" class="concept-dataset-images contrastive-container concept-augmented-images" src="img/contrastive_learning/concept/empty.jpg">
+                        <img id="concept_augmented_image_0_1" class="concept-dataset-images contrastive-container concept-augmented-images" src="img/contrastive_learning/concept/empty.jpg">
+                        <img id="concept_augmented_image_1_0" class="concept-dataset-images contrastive-container concept-augmented-images" src="img/contrastive_learning/concept/empty.jpg">
+                        <img id="concept_augmented_image_1_1" class="concept-dataset-images contrastive-container concept-augmented-images" src="img/contrastive_learning/concept/empty.jpg">
+                    </div>
+                    <!-- </div> -->
+                    <!--      arrow              -->
+                    <div class="vertical">
+                        <div>
+                            <img src="img/contrastive_learning/arrow.png" class="concept-arrow">
+                        </div>
+                    </div>
+                    <!--      pairs              -->
+                    <div class="vertical">
+                        <div class="vertical " id="concept_pairs">
+                            <img id="concept_pairs_image_0" class="concept-pairs-images contrastive-container" src="img/contrastive_learning/concept/empty.jpg">
+                            <div id="pairs_text">-------</div>
+                            <img id="concept_pairs_image_1" class="concept-pairs-images contrastive-container" src="img/contrastive_learning/concept/empty.jpg">
+                        </div>
+                    </div>
+                    <!--                      <img src="img/contrastive_learning/two_arrow.png" class="two_arrow">-->
+                    <div class="vertical two_arrow">
+                        <img src="img/contrastive_learning/arrow.png" class="concept-arrow">
+                        <img src="img/contrastive_learning/arrow.png" class="concept-arrow">
+                    </div>
+                    <div class="vertical">
+                        shared-weights
+                        <img src="img/contrastive_learning/encoder.png" id="concept_encoder">
+                    </div>
+                    <div class="vertical two_arrow">
+                        <img src="img/contrastive_learning/arrow.png" class="concept-arrow">
+                        <img src="img/contrastive_learning/arrow.png" class="concept-arrow">
+                    </div>
+                    <div class="vertical">
+                        shared-weights
+                        <img src="img/contrastive_learning/projection_head.png" id="concept_projection_head">
+                    </div>
+                    <div class="vertical two_arrow">
+                        <img src="img/contrastive_learning/arrow.png" class="concept-arrow">
+                        <img src="img/contrastive_learning/arrow.png" class="concept-arrow">
+                    </div>
+                    <img src="img/contrastive_learning/concept/contrastive_loss.gif" id="contrastive_loss">
+
+                    <div class="contrastive-text">Training images</div>
+                    <div class="contrastive-text"></div>
+                    <div class="contrastive-text">Augmentations</div>
+                    <div class="contrastive-text"></div>
+                    <div class="contrastive-text">Pairs</div>
+                    <div class="contrastive-text"></div>
+                    <div class="contrastive-text">Encoder Network</div>
+                    <div class="contrastive-text"></div>
+                    <div class="contrastive-text">Projection Network</div>
+                    <div class="contrastive-text"></div>
+                    <div class="contrastive-text"></div>
+
+
+                    <!-- parameter                    -->
+                    <div class="vertical">
+                        <div class="contrastive-container" id="concept_parameter_dataset">
+                            <img src="img/contrastive_learning/concept/cat_one.jpg" class="concept-parameter-dataset-images contrastive-container">
+                            <img src="img/contrastive_learning/concept/cat_two.jpg" class="concept-parameter-dataset-images contrastive-container">
+                            <img src="img/contrastive_learning/concept/plane_two.jpg" class="concept-parameter-dataset-images contrastive-container">
+                            <img src="img/contrastive_learning/concept/plane_one.jpg" class="concept-parameter-dataset-images contrastive-container">
+                        </div>
+                    </div>
+                    <div></div>
+                    <div>
+                        <form class="concept-augmentation contrastive-container">
+                            <div>
+                                <input type="checkbox" class="augmented-flip" id="concept_rotate" /> <label for="concept_rotate">Rotate</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" class="augmented-flip" id="concept_flip" /> <label for="concept_flip">Flip</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" class="augmented-flip" id="concept_crop" /> <label for="concept_crop">Random Crop</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" class="augmented-flip" id="concept_jitter" /> <label for="concept_jitter">Color Jitter</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" class="augmented-flip" id="concept_blur" /> <label for="concept_Blur">Gaussian Blur</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="positive_negative">
+                <div class="positive_negative_button_container">
+                </div>
+            </div>
+            <div class="caption">
+                <b>Figure 2:</b><br>
+                The interactive contrastive learning network to demonstrate the effects of positive pairs and negative pairs.
+            </div>
+        </div>
+
+
+        <h3>Key components in contrastive learning</h3>
+        <p class="inline-math">
+            SimCLR can be decomposed into three key components: data augmentations, positive pairs and negative pairs, and the network structure.
+            The network structure consists of three sub-components: the shared-weights encoder network, the shared-weights projection network, and the self-supervised contrastive loss.
+            Each of these components plays an important and unique role in SimCLR.
+            In the following, we will introduce these key components by using interactive figures to let the readers better understand the effectiveness of contrastive learning.
+        </p>
+        <!--       <ul id="Units">
+        <li>
+            <strong>Data augmentation</strong>
+        </li>
+        <li>
+            <strong>Positive pairs and negative pairs</strong>
+        </li>
+        <li>
+            <strong>Network structure</strong>
+            <ul>
+                <li style="margin: auto">Encoder network</li>
+                <li style="margin: auto">Projection network</li>
+                <li style="margin: auto">Contrastive loss</li>
+            </ul>
+        </li>
+    </ul> -->
+        <!-- Data augmentation -->
+        <h3>Data augmentations</h3>
+        <p id="Data augmentation" class="inline-math">
+            Generating data augmentations has been shown to be an effective scheme to improve the performance of contrastive learning when the class labels are not available.
+            Different combinations of different data augmentation techniques can help the contrastive learning network learn more representative features.
+            Let the training set $\mathcal{D} = \{ {\bm{x}_n}\}_{n=1}^N$ where $\bm{x}_n$ is the $n$th training image and $N$ is the number of training images.
+            For each $\bm{x}_n$, two random augmentations are generated as $\tilde{\bm{x}}_n = aug(\bm{x}_n)$, where $aug(\cdot)$ is the random augmentation function.
+            Two augmentations of the same training image provide different views of the training image and should
+            have similar features after training.
+            Thus, the augmentations help the network learn more general features which are able to
+            represent training images under variant appearance changes caused by different augmentation types.
+        </p>
+        <p>
+            In the interactive figure, we show different random augmentation types including rotation, flip, random crop,
+            color distortion, and Gaussian blur.
+            The definitions of these augmentation types are as follows:
+        </p>
+
+        <ul>
+            <li>
+                The rotation changes the appearance of an image by in-plane rotating the image with respect to different
+                rotation angles.
+            </li>
+            <li>
+                The horizontal flip and vertical flip reflect the training image based on the center of the
+                image in the horizontal direction and vertical direction, respectively.
+            </li>
+            <li>
+                The random crop resizes the training image and crops a part of the resized image as the augmentation.
+            </li>
+            <li>
+                The color distortion aims to alter the colors of the training image to provide
+                different appearances of the object in the training image for illumination representations.
+            </li>
+            <li>
+                The Gaussian blur with different kernels generates different views of the training
+                image under different smoothness views.
+            </li>
+        </ul>
+        <p>
+            In Figure 3, the readers can interactively perform the operations of different augmentation types.
+            The readers can also simultaneously combine several different augmentation types to observe the effects.
+            By interacting with the settings of different augmentations, the readers can understand how different augmentation types affect an image.
+
+        </p>
+        <div class="framed">
+            <div class="inside">
+                <div class="eyebrow">
+                    The readers can first select an image from the dataset.
+                    Then, different parameters of different augmentation types can be manually adjusted by using the slide bars to show the effects.
+                    Click the "Random Generate" button to generate the random crop result which contain a part of the image.
+                    The readers can observe the result shown in the right rectangle of the figure.
+                </div>
+                <div class="augmented-container">
+                    <div class="augmented-parameter-out-container">
+                        <div class="augmented-parameter-container" id="augmented-image-container">
+                            <div class="augmented-parameter-title" style="font-size: 30px"><b>Dataset</b></div>
+                            <div class="augmented-image-icon-container">
+                                <div class="augmented-image-inner-container">
+                                    <img class="augmented-image" src="img/contrastive_learning/dog_1.jpg">
+                                </div>
+                                <div class="augmented-image-inner-container">
+                                    <img class="augmented-image" src="img/contrastive_learning/dog_2.jpg">
+                                </div>
+                                <div class="augmented-image-inner-container">
+                                    <img class="augmented-image" src="img/contrastive_learning/dog_3.jpg">
+                                </div>
+                                <div class="augmented-image-inner-container">
+                                    <img class="augmented-image" src="img/contrastive_learning/cat_1.jpg">
+                                </div>
+                                <div class="augmented-image-inner-container">
+                                    <img class="augmented-image" src="img/contrastive_learning/cat_2.jpg">
+                                </div>
+                                <div class="augmented-image-inner-container">
+                                    <img class="augmented-image" src="img/contrastive_learning/cat_3.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="augmented-parameter-container">
+                            <div class="augmented-parameter-title" style="font-size: 30px"><b>Augmentation</b></div>
+                            <div id="augmented-parameter-strong-container">
+                                <div>
+
+                                    <b style="font-size: 20pt">Rotation:</b>
+                                    <div>
+                                        Rotation angle:<br>
+                                        0&deg; <input type="range" min="0" max="360" step="1" value="0" id="augment-angle"> 360&deg;
+                                    </div>
+                                    <b style="font-size: 20pt">Flip:</b>
+                                    <form>
+                                        <input type="checkbox" class="augmented-flip" id="augmented-flip-horizontal" /> <label for="augmented-flip-horizontal">Horizontal</label><br>
+                                        <input type="checkbox" class="augmented-flip" id="augmented-flip-vertical" /> <label for="augmented-flip-vertical">Vertical</label>
+                                    </form>
+                                    <b style="font-size: 20pt">Random Crop:</b>
+                                    <div>
+                                        <input class="augmented-random-crop" type="button" id="augmented-random-crop" value="Random Generate">
+                                        <input class="augmented-random-crop" type="button" id="augmented-Reset" value="Reset">
+                                    </div>
+                                </div>
+                                <div>
+                                    <b style="font-size: 20pt">Color Distortion:</b>
+                                    <div>
+                                        <label>Brightness: </label><br>
+                                        -100% <input class="augmented-color-jitter" type="range" min="-100" max="+100" step="1" value="0" id="augmented-brightness"> 100% <br>
+                                        <label>Contrast: </label><br>
+                                        -100% <input class="augmented-color-jitter" type="range" min="-100" max="+100" step="1" value="0" id="augmented-contrast"> 100%<br>
+                                        <label>Saturate: </label><br>
+                                        -100% <input class="augmented-color-jitter" type="range" min="-100" max="+100" step="1" value="0" id="augmented-saturate"> 100%<br>
+                                        <label>Hue: </label><br>
+                                        -100% <input class="augmented-color-jitter" type="range" min="-100" max="+100" step="1" value="0" id="augmented-hue"> 100%
+                                    </div>
+
+                                    <b style="font-size: 20pt">Gaussian Blur: </b>
+                                    <div>
+                                        Kernel size: <br>
+                                        0 px <input class="augmented-gaussian-blur" type="range" min="0" max="7" step="1" value="0" id="augmented-gaussian-blur">7 px
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="augmented-output-container">
+                        <canvas id="augmented-image-output-canvas" width="250" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <b>Figure 3:</b><br>
+                Generate different data augmentations.
+            </div>
+        </div>
+
+        <!--  Positive Pairs and Negative Pairs      -->
+        <h3>Positive pairs and negative pairs</h3>
+        <p class="inline-math">
+            In contrastive learning, positive pairs and negative pairs define the content correlations of augmentations of training images.
+            During training, two random augmentations are generated for each training image at first.
+            Let $i\in I = \{1, ..., 2N\}$ be the index of an arbitrary augmentation in $I$, and $I$ is the augmentation set of $N$ training images.
+            Because no label information is given, a positive pair is defined as two different random augmentations $\tilde{\bm{x}}_i$ and $\tilde{\bm{x}}_{j(i)}$ of the same training image $\bm{x}_n$, where $i$ and $j(i)$ are the indices of the first and the second augmentations of the $n$th training image.
+            The remaining augmentations in $I$ are considered as the negative pairs with respect to the augmentation of the index $i$.
+            As a result, for each $i$, $1$ positive pair and $2N-2$ negative pairs are generated for contrastive loss computation.
+        </p>
+        <p>
+            In Figure 2, the readers can select different augmentations of the same training image or different training images to see how the contrastive learning network processes the images.
+            When the readers select two augmentations of the same training image, the figure will show that the readers select a positive pair based on content correlations.
+            Then, the positive pair is inputted to the network and their features should be pulled together based on the contrastive loss in the feature space.
+            When the readers select two augmentations of different training images, the figure will show that the readers select a negative pair.
+            Thus, a negative pair is inputted to the network and their features should be pushed away based on the contrastive loss in the feature space.
+        </p>
+
+        <!-- ======================== Network structure  =================================The contrastive learning network aims to learn similar features for positive pairs and distinctive features for negative pairs. -->
+        <!-- ======================== Encoder network  ==================-->
+        <h3>Network structure</h3>
+        <p class="inline-math">
+
+            <b>Encoder network</b><br>
+            The goal of the shared-weights encoder network is to learn and extract the relevant information from augmentations of the training images as shown in Figure 2.
+            The encoder network $f(\cdot)$ is a ResNet-18 backbone [<a href="#ref_2:ResNet">2</a>] without loading pre-trained weights.
+            It is used to extract the deep features $$\bm{h}_i = f(\tilde{\bm{x}}_i)$$ and $$\bm{h}_{a} = f(\tilde{\bm{x}}_{a})$$ from two augmentations $$\tilde{\bm{x}}_i$$ and $$\tilde{\bm{x}}_{a}$$ of training images in the augmentation set, where $$i \neq a$$.
+            After computing the contrastive loss, the encoder network is updated accordingly to retrieve similar features of positive pairs and dissimilar features of negative pairs.
+        </p>
+        <!-- ======================== Projection network  ==================-->
+        <p class="inline-math">
+            <b>Projection network</b><br>
+            The shared-weights projection network aims to reduce the dimensionality of the features of the encoder network for similarity computation.
+            The projection network $$p(\cdot)$$ is a multi-layer perceptron with two hidden layers of $$512$$ neurons and an output layer of $$128$$ neurons.
+            It transfers deep features of the encoder network to 1-D vectors for loss computation.
+            The projection features of the deep features $$\bm{h}_i$$ and $$\bm{h}_{a}$$ are defined as $$\bm{z}_i = p(\bm{h}_i)$$ and $$\bm{z}_{a} = p(\bm{h}_a)$$.
+            As discovered in SimCLR [<a href="#ref_8:SimCLR">8</a>], the projection network can improve the accuracy and reduce the complexity of computing similarity between features of two augmentations during the loss computation.
+            Please note that the projection network is only applied during training to help the loss computation.
+            When testing, we use the encoder network without the projection network to extract deep features of testing images.
+        </p>
+        <!-- ======================== Self-supervised contrastive loss  ==================-->
+        <p class="inline-math">
+            <b>Self-supervised contrastive loss</b><br>
+            Because no label information is available, the contrastive loss is also referred as the self-supervised contrastive loss.
+            It is computed based on the positive pairs and negative pairs from the augmentation set of the training set $\mathcal{D}$.
+            Given the projection feature $\bm{z}_{i}$ of an augmentation of $\bm{x}_n$, the projection feature $\bm{z}_{j(i)}$ is the other augmentation of $\bm{x}_n$.
+            $\bm{z}_{i}$ and $\bm{z}_{j(i)}$ form a positive pair and thus they should be similar in the feature space.
+            Based on the positive pair and negative pairs, the self-supervised contrastive loss $\mathcal{L}^{self}$ is defined as follows:
+        </p>
+        <p>
+            $$ \mathcal{L}^{self} = -\sum_{i \in I} log \frac{exp(sim(\bm{z}_{i}, \bm{z}_{j(i)}) / \tau)}{\sum\limits_{a \in I \backslash \{i\}}{exp(sim(\bm{z}_{i}, \bm{z}_{a}) / \tau)}},$$
+        </p>
+        <p class="inline-math">
+            where $\tau$ is the temperature parameter to control the scale of similarity and $sim(\bm{u},\bm{v})$ is the cosine similarity function of $\bm{u}$ and $\bm{v}$.
+            As shown in the above equation, the numerator aims to maximize the similarity of features of the positive pair of the same training image.
+            The denominator aims to minimize the similarity of features of augmentations of different training images.
+            By considering $\mathcal{L}^{self}$, the encoder network can learn distinctive feature representations for each training image to distinguish each training image from the remaining training images.
+        </p>
+        <p class="inline-math">
+            When computing the self-supervised loss $\mathcal{L}^{self}$, the cosine similarity function $sim(\bm{u},\bm{v})$ calculates the similarity between two projection features.
+            The cosine similarity can be considered as the angle between the projection features of two augmentations.
+            During training the contrastive learning network, the similarity of a positive pair should be high, i.e. the angle between the projection features of the positive pair should be small.
+            In contrast, the similarity of a negative pair should be low, i.e. the angle between the projection features of the negative pair should be large.
+        </p>
+        <p class="inline-math">
+            Figure 4 shows the effects of the cosine similarity function with respect to positive pairs and negative pairs.
+            The readers can select any two augmentations by clicking them.
+            The interactive figure will determine the selected augmentations as the positive pair or negative pair, and show the angles between two augmentations.
+            When the readers select two augmentations of the same image, the angle between the projection features of the selected augmentations will be small.
+            Thus, the cosine similarity function can effectively represent the similarity between any two projection features of different augmentations for the self-supervised contrastive loss computation.
+        </p>
+        <div class="framed">
+            <div class="inside">
+                <div class="eyebrow">
+                    Click the augmentations of the images to observe the computed cosine similarity and the angle between two projection features of the selected augmentations.
+                </div>
+                <p> $$ sim(u,v) = \frac{u^Tv}{\|{u}\| \|{v} \|}$$</p>
+                <div class="cosine-similarity-model-container">
+                    <div class="cosine-similarity-model-component">
+                        <div class="cosine-dataset-container">
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image cosine-similarity-model-dataset" id="cosine-similarity-image-1" src="img/contrastive_learning/cosine_similarity/cat1_one.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image cosine-similarity-model-dataset" id="cosine-similarity-image-2" src="img/contrastive_learning/cosine_similarity/cat1_two.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image cosine-similarity-model-dataset" id="cosine-similarity-image-3" src="img/contrastive_learning/cosine_similarity/cat2_one.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image cosine-similarity-model-dataset" id="cosine-similarity-image-4" src="img/contrastive_learning/cosine_similarity/cat2_two.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image cosine-similarity-model-dataset" id="cosine-similarity-image-5" src="img/contrastive_learning/cosine_similarity/plane1_one.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image cosine-similarity-model-dataset" id="cosine-similarity-image-6" src="img/contrastive_learning/cosine_similarity/plane1_two.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image cosine-similarity-model-dataset" id="cosine-similarity-image-7" src="img/contrastive_learning/cosine_similarity/plane2_one.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image cosine-similarity-model-dataset" id="cosine-similarity-image-8" src="img/contrastive_learning/cosine_similarity/plane2_two.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cosine-similarity-model-component">
+                        <div class="cosine-similarity-pair">
+                            <div class="cosine-similarity-pair-image">
+                                <img class="img " id="pair_0">
+                            </div>
+
+
+                            <div class="cosine-similarity-pair-image">
+                                <img class="img " id="pair_1">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="cosine-similarity-output">
+                    <div class="cosine-similarity-output-text-container-outer">
+                        <canvas id="cosine-similarity-output-canvas" height="300px" width="300px"></canvas>
+                    </div>
+                    <div class="cosine-similarity-output-text-container-outer">
+                        <div class="cosine-similarity-output-text-container-inner" id="cosine-positive-negative">
+                            <b> Positive pair </b>
+                        </div>
+                        <div class="cosine-similarity-output-text-container-inner" id="high-low-similarity">
+                            <b> High similarity </b>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="caption">
+                    <b>Figure 4:</b><br>
+                    Cosine similarity between projection features of two augmentations.
+                </div>
+
+            </div>
+        </div>
+        <p class="inline-math">
+            With the understanding of the cosine similarity function, we will introduce how the similarity affects the self-supervised contrastive loss computation during training.
+            When dealing with positive pairs, the two projection features $\bm{z}_{i}$ and $\bm{z}_{j(i)}$ should be similar to each other.
+            As a result, a large similarity will be obtained and the numerator of the self-supervised contrastive loss will become large.
+            In this case, the self-supervised contrastive loss will become smaller because of the negative sign of the equation.
+            Thus, the loss can drive the shared-weights encoder network and the projection network to pull the generated features of the positive pairs together.
+        </p>
+        <p class="inline-math">
+            When the negative pairs are inputted, they affect the computation of the denominator of the self-supervised contrastive loss.
+            If the projection features $\bm{z}_{i}$ and $\bm{z}_{a}$ of the negative pairs of different training images are similar, the denominator of the self-supervised contrastive loss will become large.
+            In this situation, the computed self-supervised contrastive loss will also become larger.
+            To decrease the self-supervised contrastive loss, the shared-weights encoder network and the projection network need to push the generated features of the negative pairs away.
+            Then the similarity of the projection features $\bm{z}_{i}$ and $\bm{z}_{a}$ of the negative pairs will become smaller and thus the computed loss will also decrease.
+            As a result, the self-supervised contrastive loss can help the contrastive learning network learn distinctive features without the labels.
+        </p>
+        <p class="inline-math">
+            Figure 5 shows the effects of positive pairs and negative pairs when computing the self-supervised contrastive loss.
+            The readers can select any two augmentations by clicking the images.
+            The figure will determine the positive pairs and negative pairs at first.
+            Then, the reader can observe the positive pairs affect the computation of the numerator and lead to lower loss.
+            When negative pairs are selected and their projection features are similar, the denominator will become larger and the loss will also become higher.
+            As a result, the contrastive learning network needs to learn similar features for positive pairs and learn dissimilar features for negative pairs.
+        </p>
+        <div class="framed">
+            <div class="inside">
+                <div class="eyebrow">
+                    Click the images to see the different similarity about different pairs.
+                </div>
+
+                <div class="cosine-similarity-model-container">
+                    <div class="cosine-similarity-model-component">
+                        <div class="cosine-dataset-container" id="loss-dataset-container">
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image loss-model-dataset" id="loss-similarity-image-1" src="img/contrastive_learning/cosine_similarity/cat1_one.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image loss-model-dataset" id="loss-similarity-image-2" src="img/contrastive_learning/cosine_similarity/cat1_two.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image loss-model-dataset" id="loss-similarity-image-3" src="img/contrastive_learning/cosine_similarity/cat2_one.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image loss-model-dataset" id="loss-similarity-image-4" src="img/contrastive_learning/cosine_similarity/cat2_two.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image loss-model-dataset" id="loss-similarity-image-5" src="img/contrastive_learning/cosine_similarity/plane1_one.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image loss-model-dataset" id="loss-similarity-image-6" src="img/contrastive_learning/cosine_similarity/plane1_two.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image loss-model-dataset" id="loss-similarity-image-7" src="img/contrastive_learning/cosine_similarity/plane2_one.jpg">
+                            </div>
+                            <div class="model-dataset-container cosine-dataset">
+                                <img class="model-dataset-image loss-model-dataset" id="loss-similarity-image-8" src="img/contrastive_learning/cosine_similarity/plane2_two.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cosine-similarity-model-component">
+                        <div class="cosine-similarity-pair">
+                            <div class="cosine-similarity-pair-image">
+                                <img class="img " id="loss_pair_0">
+                            </div>
+
+
+                            <div class="cosine-similarity-pair-image">
+                                <img class="img " id="loss_pair_1">
+                            </div>
+                        </div>
+                        <div class="cosine-similarity-output-text-container-inner" id="loss-positive-negative">
+                            <b> ------------------ </b>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="cosine-similarity-output">
+                    <div class="cosine-similarity-output-text-container-outer">
+                        <div class="horizontal">
+                            <div class="vertical" id="loss-total-arrow" style="padding-bottom: 30px; margin: 10px">
+                                <p class="up-arrow"> &#8593</p>
+                                <span style="color: green"> Loss </span>
+                            </div>
+
+                            <p>
+                                $$ \mathcal{L}^{self} = -\sum_{i \in I} log \frac{exp(sim(\bm{z}_{i}, \bm{z}_{j(i)}) / \tau)}{\sum\limits_{a \in I \backslash \{i\}}{exp(sim(\bm{z}_{i}, \bm{z}_{a}) / \tau)}}$$
+                            </p>
+                            <div class="vertical" style="padding: 20px ; margin-bottom: 47px">
+                                <div id="loss-positive-arrow">
+                                    <p class="up-arrow"> &#8593</p>
+                                    <span class="loss-text" style="color: green"> Numerator</span>
+                                </div>
+                                <div id="loss-negative-arrow">
+                                    <p class="down-arrow"> &#8593</p>
+                                    <span class="loss-text" style="color: red"> Denominator</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">
+                    <b>Figure 5:</b><br>
+                    How do the positive pair and negative pair interact with the self-supervised contrastive loss.
+                </div>
+            </div>
+        </div>
+        <p>
+            Based on the self-supervised contrastive loss, the encoder network can learn representative features based on the positive pairs and negative pairs.
+            The trained encoder network can also be connected to a classifier and fine-tuned for downstream tasks [<a href="#ref_13:CL_Long-Tailed">13</a>], [<a href="#ref_14:CL_MIL">14</a>].
+        </p>
+    </section>
+        <!-- ===================================== TRAINING BETTER FEATURES BY PARAMETER ADJUSTMENT   ============================================ -->
+        <section id="Training_Better_Features">
+            <h2>IV. TRAINING BETTER FEATURES BY PARAMETER ADJUSTMENT</h2>
+            <p class="inline-math">
+                In this section, we would like to discuss the parameters of contrastive learning which affect the quality of learned features and accuracy of classifications by using the CIFAR-10 dataset [<a href="#ref_15:CIFAR-10">15</a>].
+                The CIFAR-10 dataset contains $60,000$ images of $10$ classes.
+                During the training of the contrastive learning network, the labels of the dataset are ignored.
+                We also visualize the learned features of each class by using t-SNE [<a href="#ref_16:t-SNE">16</a>].
+                By reducing the feature dimension and preserving local structure, t-SNE allows us to observe the distribution of learned features of different classes.
+                In the following, each point in the t-SNE visualization represents a testing image.
+                Different colors of the points represent different classes.
+                If the contrastive learning network is correctly trained, the features of different classes are separable while the learned features of the same class should be compact in the t-SNR visualization.
+            </p>
+            <p class="inline-math">
+                In the following experiments, we utilized ResNet-18 [<a href="#ref_2:ResNet">2</a>] as the encoder network.
+                The default settings of the contrastive learning network were as follows.
+                The learning rate was set to $$1.0$$ as suggested in SimCLR.
+                The weight decay was set to $$0.0001$$, the temperature parameter was set to $$0.5$$, the batch size was set to $$512$$, the number of epochs was set to $$1,000$$, and the dimension of the project feature was set to $$128$$.
+                We used the same data augmentations as described in SimCLR including random crops (with flip and resizing to $$32 \times 32$$) and color distortion.
+            </p>
+            <p class="inline-math">
+                In our experiments, three important parameters are introduced and evaluated.
+                The first one is the temperature parameter $$\tau$$ when computing the self-supervised contrastive loss.
+                The second one is the batch size which affects the number of pairs for loss computation.
+                The third one is the number of epochs to show how many epochs are required to learn representative features.
+                In the following, we will give detailed comparisons by adjusting these parameters.
+            </p>
+            <!-- ===================================== temperature parameter   ============================================ -->
+            <h3>The temperature parameter</h3>
+            <p class="inline-math">
+                The temperature parameter $$\tau$$ is an important parameter to help the network distinguish images from hard negative samples.
+                The accuracy of the contrastive learning network can be enhanced by properly adjusting the temperature parameter.
+                We evaluated effects of different temperature parameters including $$0.1$$, $$0.5$$, and $$1.0$$.
+                Figure 6 shows t-SNE visualizations of the contrastive learning network with respect to different temperature parameters.
+                By dragging the slide bar of the temperature parameter, the readers can observe that a smaller temperature parameter causes the mixing of testing images of different classes.
+                When the value of the temperature parameter increases, the contrastive learning network can learn better feature representations to distinguish features of different classes.
+                Thus, the network can achieve better classification accuracy as shown in the table of Figure 6.
+                When the temperature parameter is set to $$0.5$$, the contrastive learning network can achieve the best classification results.
+                Also shown in the t-SNE visualization, most features of different classes are separable.
+            </p>
+            <div class="framed">
+                <div class="inside">
+                    <div class="eyebrow">
+                        Drag the slide bar to show the results of different temperature parameters.
+                    </div>
+                    <div class="temper-container">
+                        <div>
+                            <!--                <p> $$ l_{i,j} = -log\frac{exp(sim(z_{i},z_{j})/\tau)}-->
+                            <!--                  {\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]}exp(sim(z_i,z_k)/\tau)}$$</p>-->
+                        </div>
+                        <div class="temper-parameter-container">
+                            <label>Temperature parameter $\tau$: </label>
+                            <span><input class="temperature-parameter" type="range" min="0" max="2" step="1" value="0" id="temper-parameter"></span>
+                            <span id="temper-parameter-text" style="font-weight:bold">0.1</span>
+                            </input>
+                        </div>
+                        <div class="temper-output-container">
+                            <!--                        <canvas class="output-chart" id="loss" style="position: relative; height:400px; width:400px"></canvas>-->
+                            <!--                        <canvas class="output-chart" id="accuracy" style="position: relative; height:400px; width:400px"></canvas>-->
+                            <canvas class="output-chart" id="t-SNE" style="position: relative; height:350px; width:350px"></canvas>
+                            <div class="horizontal">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Class</th>
+                                            <th>Accuracy</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                bird
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-bird"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                cat
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-cat"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                car
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-car"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                deer
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-deer"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                dog
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-dog"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                frog
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-frog"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                horse
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-horse"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                plane
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-plane"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                ship
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-ship"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="accuracy-class">
+                                                truck
+                                            </td>
+                                            <td class="accuracy-class" id="accuracy-temperature-truck"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="accuracy-class accuracy-avg"> <strong>Average</strong></td>
+                                            <td class="accuracy-class accuracy-avg" id="accuracy-temperature-avg"> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <b>Figure 6:</b><br>
+                        The comparisons of different temperature parameters.
+                    </div>
+                </div>
+            </div>
+            <!-- =====================================  The Batch Size   ============================================ -->
+            <h3> The batch size</h3>
+            <p class="inline-math">
+                When computing the self-supervised contrastive loss, the positive pair is obtained from two augmentations of the same training image.
+                The augmentations of different images in each batch are applied to compose negative pairs.
+                Thus, the batch size affects the number of positive pairs and negative pairs when computing the loss in each batch.
+                When the batch size is larger, more positive pairs and negative pairs can contribute the loss computation.
+                In general, the larger batch size usually leads to better feature training.
+                However, when the batch size is larger enough, it will not be the dominant factor for performance improvement.
+            </p>
+            <p class="inline-math">
+                We evaluated the performance of the contrastive learning network by changing the number of batches.
+                More specifically, three different batch sizes ($128$, $256$, and $512$) were applied.
+                As shown in Figure 7, the accuracy of the learned contrastive learning networks with respect to different number of batches is similar.
+                The readers can drag the slide bar in Figure 7 to observe the t-SNE visualizations.
+                Although the learned features are different with respect to different batch sizes, the features of different classes can be still distinguished from the other classes.
+                Moreover, the features of the same class are also close to each other.
+                Such situations are also reported in [<a href="#ref_17:SimCLR-github">12</a>] and [<a href="#ref_18:Intriguing properties of contrastive losses">18</a>].
+                Thus, it is possible to train good contrastive learning network under a small batch size which benefits to reduce the hardware cost for training.
+            </p>
+            <div class="framed">
+                <div class="inside">
+                    <div class="eyebrow">
+                        Drag the slide bar to show the results of different batch sizes.
+                    </div>
+                    <div class="temper-container">
+
+                        <div class="temper-parameter-container">
+                            <label>Batch size : </label>
+                            <span><input class="temperature-parameter" type="range" min="0" max="2" step="1" value="0" id="batch-size-parameter"></span>
+                            <span id="batch-size-parameter-text" style="font-weight:bold">128</span>
+                            </input>
+                        </div>
+
+                        <div class="temper-output-container">
+                            <canvas class="output-chart" id="batch-size-t-SNE" style="position: relative; height:350px; width:350px"></canvas>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Class</th>
+                                        <th>Accuracy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="accuracy-class">bird</td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-bird"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">cat</td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-cat"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">car</td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-car"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">deer</td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-deer"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">dog</td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-dog"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">frog</td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-frog"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">
+                                            horse
+                                        </td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-horse"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">plane</td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-plane"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">
+                                            ship
+                                        </td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-ship"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">
+                                            truck
+                                        </td>
+                                        <td class="accuracy-class" id="accuracy-batch-size-truck"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class accuracy-avg"> <strong>Average</strong></td>
+                                        <td class="accuracy-class accuracy-avg" id="accuracy-batch-size-avg"> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">
+                    <b>Figure 7:</b><br>
+                    The comparisons of different batch sizes.
+                </div>
+            </div>
+            <!-- =====================================  The Number of Epochs   ============================================ -->
+            <h3>The number of epochs </h3>
+            <p class="inline-math">
+                With more training epochs, the contrastive learning network can gradually learn more representative features for each training image by considering the self-supervised contrastive loss.
+                The contrastive learning network focuses on learning distinctive features to separate the features of the positive pairs from those of the negative pairs.
+                Insufficient training epochs may lead to the difficulty of learning distinctive feature between different classes.
+                In Figure 8, we demonstrate the t-SNE visualizations with respect to different epochs.
+                By dragging the slide bar, the readers can observe the learned features of the contrastive learning network with respect to different number of epochs.
+                With the increasing number of epochs, the learned features of the same class can be better separated from those of the different classes.
+                At the same time, the classification accuracy of the testing images also increases.
+                As a result, it is necessary to provide sufficient training epochs to obtain better feature representations in contrastive learning.
+            </p>
+            <div class="framed">
+                <div class="inside">
+                    <div class="eyebrow">
+                        Drag the slide bar to show the results of different epochs. With the increasing number of epochs,
+                        the features of different classes are more distinctive.
+                    </div>
+                    <div class="temper-container">
+                        <div class="temper-parameter-container">
+                            <label>Epoch: </label>
+                            <span><input class="temperature-parameter" type="range" min="100" max="1000" step="100" value="100" id="epoch-parameter"></span>
+                            <span id="epoch-parameter-text" style="font-weight:bold">100</span><span>/1000</span>
+                            </input>
+                        </div>
+                        <div class="temper-output-container">
+                            <div class="horizontal">
+                                <canvas class="output-chart" id="epoch-t-SNE" style="position: relative; height:350px; width:350px"></canvas>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Class</th>
+                                        <th>Accuracy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="accuracy-class">bird</td>
+                                        <td class="accuracy-class" id="accuracy-epoch-bird"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">cat</td>
+                                        <td class="accuracy-class" id="accuracy-epoch-cat"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">car</td>
+                                        <td class="accuracy-class" id="accuracy-epoch-car"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">deer</td>
+                                        <td class="accuracy-class" id="accuracy-epoch-deer"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">dog</td>
+                                        <td class="accuracy-class" id="accuracy-epoch-dog"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">frog</td>
+                                        <td class="accuracy-class" id="accuracy-epoch-frog"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">
+                                            horse
+                                        </td>
+                                        <td class="accuracy-class" id="accuracy-epoch-horse"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">plane</td>
+                                        <td class="accuracy-class" id="accuracy-epoch-plane"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">
+                                            ship
+                                        </td>
+                                        <td class="accuracy-class" id="accuracy-epoch-ship"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class">
+                                            truck
+                                        </td>
+                                        <td class="accuracy-class" id="accuracy-epoch-truck"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="accuracy-class accuracy-avg"> <strong>Average</strong></td>
+                                        <td class="accuracy-class accuracy-avg" id="accuracy-epoch-avg"> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="caption">
+                    <b>Figure 8:</b><br>
+                    The comparisons of different epochs.
+                </div>
+            </div>
+        </section>
+        <!-- ===================================== Supervised Contrastive Learning ==============================      -->
+        <section id="Supervised_Contrastive_Learning">
+            <h2>V. Supervised Contrastive Learning</h2>
+            <p class="inline-math">
+                To collaborate with human labels, supervised contrastive learning [<a href="#ref_19:SupSimCLR">19</a>] is proposed to
+                pull images of the same class together and push images of different classes away in the feature space.
+                In supervised contrastive learning, the positive pairs are defined as the augmentations of the images of the same class
+                , while the augmentations of the images of different classes are defined as negative pairs.
+                Thus, the contrastive learning network can learn more content information from different images of the same class.
+                To address this change, the supervised contrastive loss $\mathcal{L}^{sup}$ is defined as follows:
+            </p>
+            <p>
+                $$
+                \mathcal{L}^{sup} = \sum_{i \in I} \frac{-1}{|P(i)|} \sum_{p \in P(i)} log \frac{exp(sim(\bm{z}_{i}, \bm{z}_{p}) / \tau)}{\sum\limits_{a \in I \backslash \{i\}}{exp(sim(\bm{z}_{i}, \bm{z}_{a}) / \tau)}},
+                $$
+            </p>
+            <p class="inline-math">
+                where $$P(i) = \{p \in I \backslash \{i\}: y_{p} = y_{i}\}$$ is the subset of the augmentations which have the same class label as the $$i$$th augmentation in $$I$$, $$y_{i}$$ is the label of the augmentation $$\tilde{\bm{x}}_i$$, and $$\tau$$ is the temperature parameter to control the scale of similarity.
+                In this equation, the numerator aims to maximize the similarity of features of augmentations within the same class, while the denominator aims to minimize the similarity of features of augmentations between different classes.
+                By considering $\mathcal{L}^{sup}$, the features of the augmentations of training images in the same class will be similar to distinguish them from those in different classes.
+                Thus, using supervised contrastive loss can achieve more robust feature representations for each class compared with self-supervised contrastive loss.
+            </p>
+            <p>
+                Figure 9 shows the comparisons of supervised contrastive learning and self-supervised contrastive learning by using t-SNE visualizations.
+                When dragging the slide bar to change the number of epochs, the learned features of different classes of supervised contrastive learning are more distinctive even in the early training epochs.
+                In contrast, the learned features of different classes of self-supervised contrastive learning are relatively not so distinctive.
+                Moreover, self-supervised contrastive learning requires more epochs to obtain better feature representations compared with supervised contrastive learning.
+                By imposing the label information, supervised contrastive learning can achieve faster convergence by considering the supervised contrastive loss which contains the class label information.
+            </p>
+
+
+            <div class="framed">
+                <div class="inside">
+                    <div class="eyebrow">
+                        Drag the slide bar to show the comparisons of supervised contrastive learning and self-supervised learning with respect to different number of epochs.
+                    </div>
+                    <div class="temper-container">
+                        <div class="temper-parameter-container">
+                            <label>Epoch: </label>
+                            <span><input class="temperature-parameter" type="range" min="100" max="1000" step="100" value="100" id="supervised-parameter"></span>
+                            <span id="supervised-parameter-text" style="font-weight:bold">100</span><span>/1000</span>
+                            </input>
+                        </div>
+                        <div class="horizontal">
+                            <div class="vertical">
+                                <div class="temper-output-container">
+                                    <div class="horizontal">
+                                        <canvas class="output-chart" id="supervised-supervised-t-SNE" style="position: relative; height:350px; width:350px"></canvas>
+                                    </div>
+                                </div>
+
+                                <strong> Supervised contrastive learning</strong>
+                            </div>
+                            <div class="vertical">
+                                <div class="temper-output-container">
+                                    <div class="horizontal">
+                                        <canvas class="output-chart" id="supervised-unsupervised-t-SNE" style="position: relative; height:350px; width:350px"></canvas>
+                                    </div>
+                                </div>
+
+                                <strong> Self-supervised contrastive learning</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="caption">
+                    <b>Figure 9:</b><br>
+                    Comparisons of supervised contrastive learning and self-supervised contrastive learning.
+                    Because the label information, supervised contrastive learning can achieve faster convergence compared with self-supervised contrastive learning.
+                </div>
+            </div>
+        </section>
+        <!-- ===================================== Conclusion ==============================      -->
+        <section id="Conclusion">
+            <h2>VI. Conclusion</h2>
+            <p>
+                Although supervised deep neural networks have achieved favorable performance in various domains, but annotating labels of the training images is still very time-consuming.
+                To address this issue, contrastive learning is proposed to learn representative features from unlabeled datasets and has been shown its effectiveness for self-supervised classification.
+                In this paper, we interactively introduce contrastive learning and its related schemes.
+                The effects of selecting different augmentations with respect to different objects and the computation of feature similarity are revealed via interactive figures.
+                We also show the effectiveness of selecting different parameters for training the contrastive learning network.
+                Finally, we introduce the supervised contrastive learning to show that the performance of contrastive learning can be further boosted via labels.
+                We hope that this paper can help readers become familiar with contrastive learning via interactive figures.
+            </p>
+        </section>
+        <!-- ===================================== Contrastive learning ==============================      -->
+        <section class="references">
+            <h2>References</h2>
+            <ol>
+                <li id="ref_1:AlexNet">
+                    ImageNet Classification with Deep Convolutional Neural Networks
+                    <br>
+                    <span>
+                        A. Krizhevsky, I. Sutskever, and G. E. Hinton, Communications of the ACM, vol. 60, no. 6, pp. 84-90, 2017.
+                        <a href="https://doi.org/10.1145/3065386" target="_blank">https://doi.org/10.1145/3065386</a>
+                    </span>
+                </li>
+                <li id="ref_2:ResNet">
+                    Deep Residual Learning for Image Recognition
+                    <br>
+                    <span>
+                        K. He, X. Zhang, S. Ren and J. Sun, in Proc. IEEE Conf. on Computer Vision and Pattern Recognition,
+                        pp. 770-778, 2016.
+                        <a href="https://doi.org/10.1109/CVPR.2016.90"> https://doi.org/10.1109/CVPR.2016.90</a>
+                    </span>
+
+                </li>
+                <li id="ref_3:DeepEnsemble">
+                    Deep Ensemble Feature Network for Gastric Section Classification
+                    <br>
+                    <span>
+                        T.-H. Lin, J.-Y. Jhang, C.-R. Huang, Y.-C. Tsai, H.-C. Cheng and B.-S. Sheu, IEEE Journal of Biomedical and Health Informatics, vol. 25, no. 1, pp. 77-87, Jan. 2021.
+                        <a herf="https://doi.org/10.1109/JBHI.2020.2999731">https://doi.org/10.1109/JBHI.2020.2999731</a>
+                    </span>
+                </li>
+                <li id="ref_4:SCIST">
+                    Semantic Context-Aware Image Style Transfer
+                    <br>
+                    <span>
+                        Y.-S. Liao and C.-R. Huang, IEEE Transactions on Image Processing, vol. 31, pp. 1911-1923, 2022.
+                        <a herf="https://doi.org/10.1109/TIP.2022.3149237">https://doi.org/10.1109/TIP.2022.3149237</a>
+                    </span>
+                </li>
+                <li id="ref_5:ImageNet">
+                    ImageNet: A Large-scale Hierarchical Image Database
+                    <br>
+                    <span>
+                        J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li and L. Fei-Fei,
+                        in Proc. IEEE Conf. on Computer Vision and Pattern Recognition, pp. 248-255, 2009.
+                        <a href="https://doi.org/10.1109/CVPR.2009.5206848">https://doi.org/10.1109/CVPR.2009.5206848</a>
+                    </span>
+
+                </li>
+                <li id="ref_6:Medical transformer">
+                    Medical transformer: Gated Axial-attention for Medical Image Segmentation
+                    <br>
+                    <span>
+                        J. Valanarasu, P. Oza, I. Hacihaliloglu and V. M. Patel,
+                        in Proc. International Conf. on Medical Image Computing and Computer Assisted Intervention, pp. 36-46, 2021.
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-030-87193-2_4"> https://link.springer.com/chapter/10.1007/978-3-030-87193-2_4</a>
+                    </span>
+
+                </li>
+                <li id="ref_7:Criss-Cross Attention Based Multi-level Fusion Network">
+                    Criss-Cross Attention Based Multi-level Fusion Network for Gastric Intestinal Metaplasia Segmentation.
+                    <br>
+                    <span>
+                        C.-M. Nien, E.-H. Yang, W.-L. Chang, H.-C. Cheng and C.-R. Huang,
+                        in Proc. International Conf. on Medical Image Computing and Computer Assisted Intervention Workshop on Imaging Systems for GI Endoscopy, pp. 13-23, 2022.
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-21083-9_2">https://link.springer.com/chapter/10.1007/978-3-031-21083-9_2</a>
+                    </span>
+
+                </li>
+                <li id="ref_8:SimCLR">
+                    A Simple Framework for Contrastive Learning of Visual Representations
+                    <br>
+                    <span>
+                        T. Chen, S. Kornblith, M. Norouzi and G. Hinton,
+                        in Proc. International Conf. on Machine Learning, pp. 1597-1607, 2020.
+                        <a href="https://proceedings.mlr.press/v119/chen20j.html">https://proceedings.mlr.press/v119/chen20j.html</a>.
+                    </span>
+                </li>
+                <li id="ref_9:MoCo">
+                    Momentum Contrast for Unsupervised Visual Representation Learning
+                    <br>
+                    <span>
+                        K. He, H. Fan, Y. Wu, S. Xie and R. Girshick,
+                        in Proc. IEEE Conf. on Computer Vision and Pattern Recognition, pp. 9729-9738, 2020.
+                        <a href="https://doi.org/10.1109/CVPR42600.2020.00975">https://doi.org/10.1109/CVPR42600.2020.00975</a>
+                    </span>
+                </li>
+                <li id="ref_10:CL_SG">
+                    Contrastive Learning for Label Efficient Semantic Segmentation
+                    <br>
+                    <span>
+                        X. Zhao, R. Vemulapalli, P. A. Mansfield, B. Gong, B. Green, L. Shapira and Y. Wu,
+                        in Proc. International Conf. on Computer Vision, pp. 10603-10613, 2021.
+                        <a href="https://doi.org/10.1109/ICCV48922.2021.01045">https://doi.org/10.1109/ICCV48922.2021.01045</a>
+                    </span>
+                </li>
+                <li id="ref_11:Csi">
+                    CSI: Novelty Detection via Contrastive Learning on Distributionally Shifted Instances
+                    <br>
+                    <span>
+                        J. Tack, S. Mo, J. Jeong and J. Shin, in Proc. Advances in Neural Information Processing Systems,
+                        pp. 11839-11852, 2020.
+                        <a href="https://proceedings.neurips.cc/paper/2020/hash/8965f76632d7672e7d3cf29c87ecaa0c-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/8965f76632d7672e7d3cf29c87ecaa0c-Abstract.html</a>
+                    </span>
+                </li>
+                <li id="ref_12:Unsupervised representation learning for tissue segmentation in histopathological images">
+                    Unsupervised Representation Learning for Tissue Segmentation in Histopathological Images: From Global to Local Contrast
+                    <br>
+                    <span>
+                        Gao et al., IEEE Transactions on Medical Imaging, vol. 41, no. 12, pp. 3611-3623, 2022.
+                        <a href="https://doi.org/10.1109/TMI.2022.3191398">https://doi.org/10.1109/TMI.2022.3191398</a>
+                    </span>
+                </li>
+                <li id="ref_13:CL_Long-Tailed">
+                    Contrastive Learning based Hybrid Networks for Long-Tailed Image Classification
+                    <br>
+                    <span>
+                        P. Wang, K. Han, X. -S. Wei, L. Zhang and L. Wang,
+                        in Proc. IEEE Conf. on Computer Vision and Pattern Recognition, pp. 943-952, 2021.
+                        <a href="https://doi.org/10.1109/CVPR46437.2021.00100">https://doi.org/10.1109/CVPR46437.2021.00100</a>
+                    </span>
+                </li>
+                <li id="ref_14:CL_MIL">
+                    Dual-stream Multiple Instance Learning Network for Whole Slide Image Classification with Self-supervised Contrastive Learning
+                    <br>
+                    <span>
+                        B. Li, Y. Li and K. W. Eliceiri,
+                        in Proc. IEEE Conf. on Computer Vision and Pattern Recognition, pp. 14313-14323, 2021.
+                        <a href="https://doi.org/10.1109/CVPR46437.2021.01409">https://doi.org/10.1109/CVPR46437.2021.01409</a>
+                    </span>
+                </li>
+                <li id="ref_15:CIFAR-10">
+                    Learning Multiple Layers of Features from Tiny Images
+                    <br>
+                    <span>
+                        Alex Krizhevsky, 2009.
+                        <a href="https://www.cs.toronto.edu/~kriz/cifar.html">https://www.cs.toronto.edu/~kriz/cifar.html</a>
+                    </span>
+                </li>
+                <li id="ref_16:t-SNE">
+                    Visualizing Data Using t-SNE
+                    <br>
+                    <span>
+                        L. Maaten and G. Hinton, Journal of Machine Learning Research, vol. 9, no. 86, pp. 2579-2605, 2008.
+                        <a href="https://www.jmlr.org/papers/v9/vandermaaten08a.html">https://www.jmlr.org/papers/v9/vandermaaten08a.html</a>
+                    </span>
+                </li>
+                <li id="ref_17:SimCLR-github">
+                    SimCLR-github
+                    <br>
+                    <span>
+                        <a href="https://github.com/google-research/simclr">https://github.com/google-research/simclr</a>
+                    </span>
+                </li>
+                <li id="ref_18:Intriguing properties of contrastive losses">
+                    Intriguing Properties of Contrastive Losses
+                    <br>
+                    <span>
+                        T. Chen, C. Luo and L. Li, in Proc. Advances in Neural Information Processing Systems, pp. 11834-11845, 2021.
+                        <a href="https://proceedings.neurips.cc/paper/2021/hash/628f16b29939d1b060af49f66ae0f7f8-Abstract.html">https://proceedings.neurips.cc/paper/2021/hash/628f16b29939d1b060af49f66ae0f7f8-Abstract.html</a>
+                    </span>
+                </li>
+                <li id="ref_19:SupSimCLR">
+                    Supervised Contrastive Learning
+                    <br>
+                    <span>
+                        P. Khosla, P. Teterwak, C. Wang, A. Sarna, Y. Tian, P. Isola, A. Maschinot, C. Liu and D. Krishnan,
+                        in Proc. Advances in Neural Information Processing Systems, pp. 18661-18673, 2020.
+                        <a href="https://proceedings.neurips.cc/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html</a>
+                    </span>
+                </li>
+            </ol>
+        </section>
+    </div>
+  </article><!-- End of aticle -->
+  <!-- Scroll to top button -->
+  <a class="scroll-top" href="#">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 312.36">
+      <path fill="white"
+        d="M0 276.77 253.12 0 512 282.48l-32.65 29.88-226.2-246.83L32.66 306.64z" />
+    </svg>
+  </a>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let scrollTopBtn = document.querySelector(".scroll-top");
+      window.onscroll = function () { scrollFunction(scrollTopBtn) };
+
+      function scrollFunction(el) {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+          el.style.display = "flex";
+        } else {
+          el.style.display = "none";
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
