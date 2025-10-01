@@ -4,6 +4,12 @@
 
 An interactive website introducing Contrastive Learning, designed for IEEE Xplore immersive articles.
 
+[![Paper](https://img.shields.io/badge/IEEE-Paper-blue)](https://ieeexplore.ieee.org/document/10384535)
+
+## Demo
+
+![Demo](demo.gif)
+
 ## About
 
 This project provides an interactive visualization interface to demonstrate and explain core concepts of contrastive learning, including self-supervised learning methods like SimCLR. Through interactive charts and visualization tools, it helps users understand how key parameters affect model performance in contrastive learning.

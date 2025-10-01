@@ -4,6 +4,12 @@
 
 一個介紹對比學習(Contrastive Learning)的互動式網站,專為 IEEE Xplore 沉浸式文章設計。
 
+[![Paper](https://img.shields.io/badge/IEEE-Paper-blue)](https://ieeexplore.ieee.org/document/10384535)
+
+## 展示
+
+![Demo](demo.gif)
+
 ## 專案簡介
 
 本專案提供了一個互動式的視覺化介面,用於展示和解釋對比學習的核心概念,包括 SimCLR 等自監督學習方法。透過互動式圖表和視覺化工具,幫助使用者理解對比學習的關鍵參數如何影響模型性能。
